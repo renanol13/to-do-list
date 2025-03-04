@@ -1,20 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
+
+const Reduce = (state, action) => {
+  switch (action.type) {
+  }
+};
 
 export const ContextStorage = createContext();
 
 export const StorageProvider = ({ children }) => {
-  const [dataStorage, setDataStorage] = useState(null);
+  const initialState = JSON.parse(localStorage.getItem("@dataStorage")) || null;
+  const [state, dispatch] = useReducer(Reduce, initialState);
 
   useEffect(() => {
-    const StorageData = localStorage.getItem("@dataStorage");
-    if (StorageData) {
-      setDataStorage(JSON.parse(StorageData));
-    }
-  }, []);
-    
+    localStorage.setItem("@dataStorage", JSON.stringify(state));
+  }, [state]);
 
   return (
-    <ContextStorage.Provider value={{ dataStorage }}>
+    <ContextStorage.Provider value={{ state, dispatch }}>
       {children}
     </ContextStorage.Provider>
   );
