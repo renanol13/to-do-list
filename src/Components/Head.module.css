@@ -1,0 +1,69 @@
+.boxHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.boxInput{
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--color2);
+    border-radius: 5px;
+    min-width: 60%;
+    background: #fff;
+}
+
+button{
+    margin: none;
+}
+
+label{
+    display: none;
+}
+
+input{
+    padding: .5em;
+    border: none;
+    flex-grow: 1;
+    outline: none;
+    font-weight: bold;
+    font-size: .9em;
+    border-radius: 5px 0px 0px 5px;
+}
+
+input::placeholder{
+    opacity: .8;
+    font-weight: bold;
+}
+
+.boxInput svg{
+    font-size: 1.4em;
+    color: var(--color2);
+    margin: 0px 3px;
+    transition: 1s;
+}
+
+
+.boxHeader >  button{
+    border: none;
+    width: 50px;
+    background-color: transparent;
+    font-size: 1.4em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color2);
+}
+
+.boxHeader button > svg{
+    transition: .5s;
+}
+
+.activeGear{
+    transform: rotate(90deg);
+}
+
