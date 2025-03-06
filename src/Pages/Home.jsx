@@ -1,16 +1,23 @@
 import styles from "./Home.module.css";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Head from "../Components/Head";
 import { ContextStorage } from "../Context/ContextStorage";
+import FormPopUp from "../Components/FormPopUp";
 
 const Home = () => {
   const { dataStorage } = useContext(ContextStorage);
-  console.log();
+  const [activeFormPopUp, setActiveFormPopUp] = useState(false);
+
+  const handleActiveFormPopUp = () => {
+    setActiveFormPopUp(!activeFormPopUp);
+  };
 
   return (
     <div className={styles.boxHome}>
+      {activeFormPopUp && <FormPopUp onclose={handleActiveFormPopUp} />}
       <Head />
+
       <div>
         <h2>Lista de Tarefas:</h2>
         {dataStorage ? (
@@ -19,7 +26,14 @@ const Home = () => {
           <p>aindao a tarefas a serem mostrads</p>
         )}
       </div>
-      <button className={styles.addTask}>+</button>
+      {!activeFormPopUp && (
+        <button
+          className={styles.addTask}
+          onClick={() => handleActiveFormPopUp()}
+        >
+          +
+        </button>
+      )}
     </div>
   );
 };

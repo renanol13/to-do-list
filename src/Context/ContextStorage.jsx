@@ -22,7 +22,7 @@ export const StorageProvider = ({ children }) => {
 
   return (
     <ContextStorage.Provider value={{ state, dispatch }}>
-      {children}
+          {children}
     </ContextStorage.Provider>
   );
 };

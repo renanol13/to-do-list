@@ -17,7 +17,7 @@
     background: #fff;
 }
 
-button{
+.boxHeader button{
     margin: none;
 }
 
@@ -25,7 +25,7 @@ label{
     display: none;
 }
 
-input{
+.boxInput input{
     padding: .5em;
     border: none;
     flex-grow: 1;
@@ -35,7 +35,7 @@ input{
     border-radius: 5px 0px 0px 5px;
 }
 
-input::placeholder{
+.boxInput input::placeholder{
     opacity: .8;
     font-weight: bold;
 }
