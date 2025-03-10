@@ -33,10 +33,10 @@ label{
     font-weight: bold;
     font-size: .9em;
     border-radius: 5px 0px 0px 5px;
+    transition: 1s;
 }
 
 .boxInput input::placeholder{
-    opacity: .8;
     font-weight: bold;
 }
 
