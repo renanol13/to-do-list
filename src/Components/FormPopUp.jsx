@@ -1,12 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./FormPopUp.module.css";
 
 import { FaShareAlt } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
+import { ContextStorage } from "../Context/ContextStorage";
 
 const FormPopUp = ({ onclose }) => {
+  const [data, setData] = useState({});
+  const [error, setError] = useState(true)
+  const {state, dispatch} = useContext(ContextStorage)
+
   //verificar se data está correta
   const isValidatedDate = (dateParsed) => {
+    //Divide a string e retorna apenas a parte que contem a data
     const dateNow = new Date().toISOString().split("T")[0];
     if (dateParsed < dateNow) {
       return false;
@@ -21,23 +27,24 @@ const FormPopUp = ({ onclose }) => {
     }
   }, []);
 
-  const [data, setData] = useState({});
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    setError(null);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (data.textTask && data.category && data.dateTask) {
-      if (!isValidatedDate(data.dateTask)) {
-        alert("Data inválida");
-        return;
-      }
-      onclose();
-      return;
-    }
-    alert("Preencha todos os campos");
+    dispatch({type:'ADD-TASK', payload: data})
+    // if (data.textTask && data.category && data.dateTask) {
+    //   if (!isValidatedDate(data.dateTask)) {
+    //     setError("Data inválida!");
+    //     return;
+    //   }
+    //   onclose();
+    //   return;
+    // }
+    // setError("Preencha todos os campos!");
   };
 
   return (
@@ -53,6 +60,7 @@ const FormPopUp = ({ onclose }) => {
             value={data.textTask || ""}
             onChange={handleChange}
           ></textarea>
+          {error && <p className={styles.error}>{error}</p>}
           <div className={styles.boxMoreOptions}>
             <label htmlFor="category"></label>
             <select

@@ -59,3 +59,11 @@
 .boxForm svg{
     color: var(--color4);
 }
+
+.error{
+    color: red;
+    font-size:.8em;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.426);
+}

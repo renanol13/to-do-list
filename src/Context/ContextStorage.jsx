@@ -1,15 +1,26 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 
-const initialState = JSON.parse(localStorage.getItem("@dataStorage")) || null;
+let tasksObject = JSON.parse(localStorage.getItem("dataStorage")) || [];
+
+const initialState = {
+  tasks: tasksObject,
+};
+
 const Reduce = (state, action) => {
   switch (action.type) {
     case "ADD-TASK":
+      const createId = crypto.randomUUID();
+      action.payload.id = createId
+      
       return {
         ...state,
+        tasks: [...state.tasks, action.payload],
       };
+    
+    default:
+      return state;
   }
 };
-
 
 export const ContextStorage = createContext();
 
@@ -22,7 +33,7 @@ export const StorageProvider = ({ children }) => {
 
   return (
     <ContextStorage.Provider value={{ state, dispatch }}>
-          {children}
+      {children}
     </ContextStorage.Provider>
   );
 };
