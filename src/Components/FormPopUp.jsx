@@ -35,16 +35,16 @@ const FormPopUp = ({ onclose }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch({type:'ADD-TASK', payload: data})
-    // if (data.textTask && data.category && data.dateTask) {
-    //   if (!isValidatedDate(data.dateTask)) {
-    //     setError("Data inválida!");
-    //     return;
-    //   }
-    //   onclose();
-    //   return;
-    // }
-    // setError("Preencha todos os campos!");
+    if (data.textTask && data.category && data.dateTask) {
+      if (!isValidatedDate(data.dateTask)) {
+        setError("Data inválida!");
+        return;
+      }
+      dispatch({type:'ADD-TASK', payload: data})
+      onclose();
+      return;
+    }
+    setError("Preencha todos os campos!");
   };
 
   return (
@@ -82,7 +82,7 @@ const FormPopUp = ({ onclose }) => {
               name="dateTask"
               id="dateTask"
               onChange={handleChange}
-              value={data.dateTask || ""}
+              value={data.dateTask || "2025-03-11"}
             />
             <FaShareAlt />
             <button>

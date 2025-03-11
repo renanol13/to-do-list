@@ -28,7 +28,7 @@ export const StorageProvider = ({ children }) => {
   const [state, dispatch] = useReducer(Reduce, initialState);
 
   useEffect(() => {
-    localStorage.setItem("@dataStorage", JSON.stringify(state));
+    // localStorage.setItem("@dataStorage", JSON.stringify(state));
   }, [state]);
 
   return (
