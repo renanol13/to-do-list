@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 
-import { useContext, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import Head from "../Components/Head";
 import { ContextStorage } from "../Context/ContextStorage";
 import FormPopUp from "../Components/FormPopUp";
@@ -12,6 +12,10 @@ const Home = () => {
   const handleActiveFormPopUp = () => {
     setActiveFormPopUp(!activeFormPopUp);
   };
+
+  useLayoutEffect(() => {
+      window.scrollTo(0, 0);
+  },[activeFormPopUp])
 
   return (
     <div className={styles.boxHome}>
