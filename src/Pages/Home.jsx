@@ -4,6 +4,7 @@ import { useContext, useLayoutEffect, useState } from "react";
 import Head from "../Components/Head";
 import { ContextStorage } from "../Context/ContextStorage";
 import FormPopUp from "../Components/FormPopUp";
+import TaskCard from "../Components/TaskCard";
 
 const Home = () => {
   const { dataStorage } = useContext(ContextStorage);
@@ -24,6 +25,7 @@ const Home = () => {
 
       <div>
         <h2>Lista de Tarefas:</h2>
+        <TaskCard/>
         {dataStorage ? (
           <div>tem itens</div>
         ) : (
