@@ -1,20 +1,24 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./FormPopUp.module.css";
 
-import { FaShareAlt } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import { ContextStorage } from "../Context/ContextStorage";
 
 const FormPopUp = ({ onclose }) => {
-  const [data, setData] = useState({});
-  const [error, setError] = useState(true)
-  const {state, dispatch} = useContext(ContextStorage)
+  const [data, setData] = useState({
+    dateTask: new Date().toISOString().split("T")[0],
+    timeTask: new Date().toISOString().slice(11, 16),
+  });
+  const [error, setError] = useState(true);
+  const { dispatch } = useContext(ContextStorage);
 
   //verificar se data está correta
-  const isValidatedDate = (dateParsed) => {
+  const isValidatedTime = (dateParsed, hoursParsed) => {
+    const timeNow = new Date();
     //Divide a string e retorna apenas a parte que contem a data
-    const dateNow = new Date().toISOString().split("T")[0];
-    if (dateParsed < dateNow) {
+    const dateNow = timeNow.toISOString().split("T")[0];
+    const hoursNow = timeNow.toISOString().slice(11, 16);
+    if ((dateParsed < dateNow) | (hoursParsed <= hoursNow)) {
       return false;
     }
     return true;
@@ -27,7 +31,6 @@ const FormPopUp = ({ onclose }) => {
     }
   }, []);
 
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
     setError(null);
@@ -36,11 +39,11 @@ const FormPopUp = ({ onclose }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (data.textTask && data.category && data.dateTask) {
-      if (!isValidatedDate(data.dateTask)) {
-        setError("Data inválida!");
+      if (!isValidatedTime(data.dateTask, data.timeTask)) {
+        setError("Data ou Hora inválida!");
         return;
       }
-      dispatch({type:'ADD-TASK', payload: data})
+      dispatch({ type: "ADD-TASK", payload: data });
       onclose();
       return;
     }
@@ -82,9 +85,16 @@ const FormPopUp = ({ onclose }) => {
               name="dateTask"
               id="dateTask"
               onChange={handleChange}
-              value={data.dateTask || "2025-03-11"}
+              value={data?.dateTask}
             />
-            <FaShareAlt />
+
+            <input
+              type="time"
+              name="timeTask"
+              id="timeTask"
+              onChange={handleChange}
+              value={data?.timeTask}
+            />
             <button>
               <IoSend />
             </button>
