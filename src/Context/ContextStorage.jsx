@@ -11,8 +11,7 @@ const Reduce = (state, action) => {
     case "ADD-TASK":
       const createId = crypto.randomUUID();
       action.payload.id = createId
-      console.log(action.payload);
-      
+      action.payload.isComplete = false
       
       return {
         ...state,

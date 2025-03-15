@@ -9,14 +9,26 @@
     background-image: linear-gradient(to right, var(--color3), #83bbc8);
 }
 
-.boxTaskCard > svg{
+
+.boxIconCompleteTask{
     width: 30px;
     height: 30px;
+    border: 2px solid var(--color2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color1)
 }
 
-.boxTaskCard > .notComplete{
-    color: red;
+.boxIconCompleteTask > svg{
+    color: rgb(28, 192, 28);
+    height: 70%;
+    width: 90%;
+    opacity: 0;
+    transform: scale(0);
 }
+
 
 .boxInfo{
     width: 80%;
@@ -34,5 +46,8 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
     color: #3d3d3d;
+}
 
+@keyframes effectTaskComplet {
+    
 }
