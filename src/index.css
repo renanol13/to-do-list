@@ -1,19 +1,27 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
-  --color1: #F5F5F5;
+:root {
+  --color1: #f5f5f5;
   --color2: #aaaaaa;
-  --color3: #A7C7E7;
-  --color4: #4C6B8C;
-
+  --color3: #a7c7e7;
+  --color4: #4c6b8c;
 }
 
-body, html{
+body,
+html {
   height: 100%;
-  background-color: var(--color1);
+  background: linear-gradient(
+    135deg,
+    #f5f5f5,
+    #aaaaaa,
+    #a7c7e7,
+    #4c6b8c,
+    #345270
+  );
+  background-attachment: fixed;
   font-family: "Open Sans";
 }
