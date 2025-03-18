@@ -8,6 +8,7 @@
   background-color: var(--color3);
   height: 70px;
   overflow: hidden;
+  user-select: none;
 }
 
 .boxIconCompleteTask {
