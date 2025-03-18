@@ -37,11 +37,16 @@ const TaskCard = () => {
     }
   };
 
+  const closedFunctionsCard = () => {
+      setActiveFunctionsCard(false)
+  };
+
   return (
     <div
       ref={boxTaskRef}
       className={styles.boxTaskCard}
-      onMouseDown={openFunctionsCard}
+      onMouseEnter={openFunctionsCard}
+      onMouseLeave={closedFunctionsCard}
     >
       {activeFunctionsCard ? (
         <TaskCardFunctions />

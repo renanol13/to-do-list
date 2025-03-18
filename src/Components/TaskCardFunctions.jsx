@@ -11,7 +11,7 @@ const TaskCardFunctions = () => {
   useLayoutEffect(() => {
     gsap.to(activeBoxFunctions.current, {
       opacity: 1,
-      duration: 0.1,
+      duration: 0.3,
       scale: 1,
     });
   }, []);
