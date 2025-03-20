@@ -31,30 +31,28 @@ const TaskCard = () => {
       gsap.killTweensOf(boxTaskRef.current, boxIconCompleteTaskRef.current);
   }, [activeCompleteTask]);
 
-  const openFunctionsCard = () => {
-    if (!activeFunctionsCard) {
-      setTimeout(() => setActiveFunctionsCard(true), 1000);
-    }
+  const handleClick = (e) => {
+    console.log(e);
+    
+    e.stopPropagation();
+    setActiveCompleteTask(!activeCompleteTask)
   };
 
-  const closedFunctionsCard = () => {
-      setActiveFunctionsCard(false)
-  };
 
   return (
     <div
       ref={boxTaskRef}
       className={styles.boxTaskCard}
-      onMouseEnter={openFunctionsCard}
-      onMouseLeave={closedFunctionsCard}
+      onClick={() => setActiveFunctionsCard(!activeFunctionsCard)}
     >
       {activeFunctionsCard ? (
         <TaskCardFunctions />
       ) : (
         <>
           <div
-            onClick={() => setActiveCompleteTask(!activeCompleteTask)}
+            onClick={(e) => handleClick(e)}
             className={styles.boxIconCompleteTask}
+            
           >
             <FaCheck ref={boxIconCompleteTaskRef} />
           </div>

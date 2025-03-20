@@ -31,10 +31,14 @@
     background-color: transparent;
 }
 
-.edit{
+.open{
     background-color: var(--color2) !important;;
 }
 
 .del{
     background-color: red;
+}
+
+.open:active, .del:active {
+    opacity: .8;
 }
