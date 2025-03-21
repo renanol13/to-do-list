@@ -27,7 +27,7 @@ const Home = () => {
         <h2>Lista de Tarefas:</h2>
 
         {state.tasks.length > 0 ? (
-          state.tasks.map((task) => (
+          state.tasks.filter((task) => !task.isComplete ).map((task) => (
             <TaskCard
               key={task.id}
               id={task.id}

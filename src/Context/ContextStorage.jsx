@@ -2,7 +2,6 @@ import { createContext, useEffect, useReducer, useState } from "react";
 
 let tasksObject = JSON.parse(localStorage.getItem("@dataStorage")) || [];
 
-
 const initialState = {
   tasks: tasksObject,
 };
@@ -20,6 +19,16 @@ const Reduce = (state, action) => {
       return {
         ...state,
         tasks: [...state.tasks, newPayload],
+      };
+    case "COMPLETE-TASK":
+      const newArray = state.tasks.map((task) =>
+        task.id === action.payload.id ? { ...task, isComplete: true } : task
+      );
+      console.log(newArray);
+
+      return {
+        ...state,
+        tasks: newArray,
       };
 
     default:

@@ -3,21 +3,15 @@ import { gsap } from "gsap";
 import { FaCheck } from "react-icons/fa";
 import { useContext, useLayoutEffect, useRef, useState } from "react";
 import TaskCardFunctions from "./TaskCardFunctions";
+import { ContextStorage } from "../Context/ContextStorage";
 
-const TaskCard = ({
-  id,
-  textTask,
-  hours,
-  date,
-  category,
-  isComplete,
-}) => {
-  
+const TaskCard = ({ id, textTask, hours, date, category, isComplete }) => {
   const boxTaskRef = useRef(null);
   const boxIconCompleteTaskRef = useRef(null);
   const [activeFunctionsCard, setActiveFunctionsCard] = useState(false);
   const [activeCompleteTask, setActiveCompleteTask] = useState(false);
   const tl = gsap.timeline();
+  const { dispatch } = useContext(ContextStorage);
 
   useLayoutEffect(() => {
     if (activeCompleteTask) {
@@ -32,6 +26,7 @@ const TaskCard = ({
         duration: 0.7,
         onComplete: () => {
           boxTaskRef.current.style.display = "none";
+          dispatch({ type: "COMPLETE-TASK", payload: { id: id } });
         },
       });
     }
