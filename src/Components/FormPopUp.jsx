@@ -7,7 +7,10 @@ import { ContextStorage } from "../Context/ContextStorage";
 const FormPopUp = ({ onclose }) => {
   const [data, setData] = useState({
     dateTask: new Date().toISOString().split("T")[0],
-    timeTask: new Date().toISOString().slice(11, 16),
+    timeTask: new Date().toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
   });
   const [error, setError] = useState(true);
   const { dispatch } = useContext(ContextStorage);
@@ -17,7 +20,10 @@ const FormPopUp = ({ onclose }) => {
     const timeNow = new Date();
     //Divide a string e retorna apenas a parte que contem a data
     const dateNow = timeNow.toISOString().split("T")[0];
-    const hoursNow = timeNow.toISOString().slice(11, 16);
+    const hoursNow = timeNow.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
     if ((dateParsed < dateNow) | (hoursParsed <= hoursNow)) {
       return false;
     }
@@ -33,6 +39,7 @@ const FormPopUp = ({ onclose }) => {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+
     setError(null);
   };
 

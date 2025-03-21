@@ -7,7 +7,7 @@ import FormPopUp from "../Components/FormPopUp";
 import TaskCard from "../Components/TaskCard";
 
 const Home = () => {
-  const { dataStorage } = useContext(ContextStorage);
+  const { state } = useContext(ContextStorage);
   const [activeFormPopUp, setActiveFormPopUp] = useState(false);
 
   const handleActiveFormPopUp = () => {
@@ -15,8 +15,8 @@ const Home = () => {
   };
 
   useLayoutEffect(() => {
-      window.scrollTo(0, 0);
-  },[activeFormPopUp])
+    window.scrollTo(0, 0);
+  }, [activeFormPopUp]);
 
   return (
     <div className={styles.boxHome}>
@@ -25,11 +25,21 @@ const Home = () => {
 
       <div>
         <h2>Lista de Tarefas:</h2>
-        <TaskCard/>
-        {dataStorage ? (
-          <div>tem itens</div>
+
+        {state.tasks.length > 0 ? (
+          state.tasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              id={task.id}
+              hours={task.timeTask}
+              date={task.dateTask}
+              category={task.category}
+              textTask={task.textTask}
+              isComplete={task.isComplete}
+            />
+          ))
         ) : (
-          <p>aindao a tarefas a serem mostrads</p>
+          <p>ainda nao existe tarefas</p>
         )}
       </div>
       {!activeFormPopUp && (

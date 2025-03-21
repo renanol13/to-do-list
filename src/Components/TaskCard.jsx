@@ -1,10 +1,18 @@
 import styles from "./TaskCard.module.css";
 import { gsap } from "gsap";
 import { FaCheck } from "react-icons/fa";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useContext, useLayoutEffect, useRef, useState } from "react";
 import TaskCardFunctions from "./TaskCardFunctions";
 
-const TaskCard = () => {
+const TaskCard = ({
+  id,
+  textTask,
+  hours,
+  date,
+  category,
+  isComplete,
+}) => {
+  
   const boxTaskRef = useRef(null);
   const boxIconCompleteTaskRef = useRef(null);
   const [activeFunctionsCard, setActiveFunctionsCard] = useState(false);
@@ -32,12 +40,9 @@ const TaskCard = () => {
   }, [activeCompleteTask]);
 
   const handleClick = (e) => {
-    console.log(e);
-    
     e.stopPropagation();
-    setActiveCompleteTask(!activeCompleteTask)
+    setActiveCompleteTask(!activeCompleteTask);
   };
-
 
   return (
     <div
@@ -52,15 +57,14 @@ const TaskCard = () => {
           <div
             onClick={(e) => handleClick(e)}
             className={styles.boxIconCompleteTask}
-            
           >
             <FaCheck ref={boxIconCompleteTaskRef} />
           </div>
           <div className={styles.boxInfo}>
-            <h4 className={styles.content}>Isso é minha primeira tarefa</h4>
+            <h4 className={styles.content}>{textTask}</h4>
             <div className={styles.boxTimes}>
-              <p id="date">12-11-2025</p>
-              <p id="hours">12-45</p>
+              <p id="date">{date}</p>
+              <p id="hours">{hours}</p>
             </div>
           </div>
         </>
