@@ -14,7 +14,6 @@ const Reduce = (state, action) => {
       const createId = crypto.randomUUID();
       newPayload.id = createId;
       newPayload.isComplete = false;
-      console.log(newPayload);
 
       return {
         ...state,

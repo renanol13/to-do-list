@@ -1,0 +1,62 @@
+li{
+    list-style: none;
+}
+
+.boxTitle{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.boxTitle button{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    border: none;
+}
+
+.boxTitle button svg{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: transform .3s;
+
+}
+
+.boxTitle  svg:active{
+    
+}
+
+.boxFilter ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.boxFilter ul li{
+    background-color: var(--color1);
+    width: max-content;
+    padding: .5em;
+    border-radius: 20px;
+    border: 2px solid var(--color4);
+    font-size: .9em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.boxFilter ul li svg{
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.transitionFilterOn{
+    transform: rotate(180deg);
+}
+
+@media  (max-width:600px) {
+    .boxFilter ul li{
+        font-size: .8em;
+    }
+}

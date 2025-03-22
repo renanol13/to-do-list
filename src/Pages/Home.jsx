@@ -5,6 +5,7 @@ import Head from "../Components/Head";
 import { ContextStorage } from "../Context/ContextStorage";
 import FormPopUp from "../Components/FormPopUp";
 import TaskCard from "../Components/TaskCard";
+import FilterTask from "../Components/FilterTask";
 
 const Home = () => {
   const { state } = useContext(ContextStorage);
@@ -24,20 +25,22 @@ const Home = () => {
       <Head />
 
       <div>
-        <h2>Lista de Tarefas:</h2>
+        <FilterTask />
 
         {state.tasks.length > 0 ? (
-          state.tasks.filter((task) => !task.isComplete ).map((task) => (
-            <TaskCard
-              key={task.id}
-              id={task.id}
-              hours={task.timeTask}
-              date={task.dateTask}
-              category={task.category}
-              textTask={task.textTask}
-              isComplete={task.isComplete}
-            />
-          ))
+          state.tasks
+            .filter((task) => !task.isComplete)
+            .map((task) => (
+              <TaskCard
+                key={task.id}
+                id={task.id}
+                hours={task.timeTask}
+                date={task.dateTask}
+                category={task.category}
+                textTask={task.textTask}
+                isComplete={task.isComplete}
+              />
+            ))
         ) : (
           <p>ainda nao existe tarefas</p>
         )}
