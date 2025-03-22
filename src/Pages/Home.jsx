@@ -9,6 +9,7 @@ import FilterTask from "../Components/FilterTask";
 
 const Home = () => {
   const { state } = useContext(ContextStorage);
+  const [opFilter, setOpFilter] = useState("pending");
   const [activeFormPopUp, setActiveFormPopUp] = useState(false);
 
   const handleActiveFormPopUp = () => {
@@ -25,11 +26,24 @@ const Home = () => {
       <Head />
 
       <div>
-        <FilterTask />
+        <FilterTask opFilter={opFilter} setOpFilter={setOpFilter} />
 
         {state.tasks.length > 0 ? (
           state.tasks
-            .filter((task) => !task.isComplete)
+            .filter((task) =>
+              opFilter === "all"
+                ? true
+                : opFilter === "completed"
+                ? task.isComplete
+                : opFilter === "pending"
+                ? !task.isComplete
+                : opFilter === "work"
+                ? task.category === "trabalho"
+                : opFilter === "personal"
+                ? task.category === "pessoal"
+                :  task.category === "listaDeDesejos"
+                
+            )
             .map((task) => (
               <TaskCard
                 key={task.id}
