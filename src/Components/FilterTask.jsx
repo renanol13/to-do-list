@@ -33,10 +33,13 @@ const FilterTask = ({ opFilter, setOpFilter }) => {
       </div>
       {activeMenuFilter && (
         <ul>
-          {optionsFilter.map((option) => (
+          {optionsFilter.map((option, index) => (
             <li
+              key={index}
               onClick={() => handleClick(option)}
-              className={opFilter === option.opFilter && styles.selected}
+              className={
+                opFilter === option.opFilter ? styles.selected : undefined
+              }
             >
               {option.icon && option.icon}
               {option.text}

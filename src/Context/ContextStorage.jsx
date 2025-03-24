@@ -23,11 +23,16 @@ const Reduce = (state, action) => {
       const newArray = state.tasks.map((task) =>
         task.id === action.payload.id ? { ...task, isComplete: true } : task
       );
-      console.log(newArray);
 
       return {
         ...state,
         tasks: newArray,
+      };
+    case "DELETE-TASK":
+      const newTasks = state.tasks.filter((task) => task.id !== action.payload.id);
+      return {
+        ...state,
+        tasks: newTasks,
       };
 
     default:

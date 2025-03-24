@@ -26,7 +26,7 @@ const TaskCard = ({ id, textTask, hours, date, category, isComplete }) => {
         duration: 0.7,
         onComplete: () => {
           boxTaskRef.current.style.display = "none";
-          dispatch({ type: "COMPLETE-TASK", payload: { id: id } });
+          dispatch({ type: "COMPLETE-TASK", payload: { id } });
         },
       });
     }
@@ -46,7 +46,7 @@ const TaskCard = ({ id, textTask, hours, date, category, isComplete }) => {
       onClick={() => setActiveFunctionsCard(!activeFunctionsCard)}
     >
       {activeFunctionsCard ? (
-        <TaskCardFunctions />
+        <TaskCardFunctions id={id} />
       ) : (
         <>
           <div
