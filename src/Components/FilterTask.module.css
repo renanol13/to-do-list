@@ -29,10 +29,6 @@ li{
 
 }
 
-.boxTitle  svg:active{
-    
-}
-
 .boxFilter ul {
     display: flex;
     flex-wrap: wrap;

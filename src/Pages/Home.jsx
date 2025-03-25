@@ -6,6 +6,7 @@ import { ContextStorage } from "../Context/ContextStorage";
 import FormPopUp from "../Components/FormPopUp";
 import TaskCard from "../Components/TaskCard";
 import FilterTask from "../Components/FilterTask";
+import noTasksPng from "../assets/img/noTask.png";
 
 const Home = () => {
   const { state } = useContext(ContextStorage);
@@ -20,6 +21,20 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [activeFormPopUp]);
 
+  const filteredTasks = state.tasks.filter((task) =>
+    opFilter === "all"
+      ? true
+      : opFilter === "completed"
+      ? task.isComplete
+      : opFilter === "pending"
+      ? !task.isComplete
+      : opFilter === "work"
+      ? task.category === "trabalho"
+      : opFilter === "personal"
+      ? task.category === "pessoal"
+      : task.category === "listaDeDesejos"
+  );
+
   return (
     <div className={styles.boxHome}>
       {activeFormPopUp && <FormPopUp onclose={handleActiveFormPopUp} />}
@@ -28,35 +43,23 @@ const Home = () => {
       <div>
         <FilterTask opFilter={opFilter} setOpFilter={setOpFilter} />
 
-        {state.tasks.length > 0 ? (
-          state.tasks
-            .filter((task) =>
-              opFilter === "all"
-                ? true
-                : opFilter === "completed"
-                ? task.isComplete
-                : opFilter === "pending"
-                ? !task.isComplete
-                : opFilter === "work"
-                ? task.category === "trabalho"
-                : opFilter === "personal"
-                ? task.category === "pessoal"
-                :  task.category === "listaDeDesejos"
-                
-            )
-            .map((task) => (
-              <TaskCard
-                key={task.id}
-                id={task.id}
-                hours={task.timeTask}
-                date={task.dateTask}
-                category={task.category}
-                textTask={task.textTask}
-                isComplete={task.isComplete}
-              />
-            ))
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              id={task.id}
+              hours={task.timeTask}
+              date={task.dateTask}
+              category={task.category}
+              textTask={task.textTask}
+              isComplete={task.isComplete}
+            />
+          ))
         ) : (
-          <p>ainda nao existe tarefas</p>
+          <div className={styles.boxNotasks}>
+              <img src={noTasksPng} alt="Nenhuma tarefa encontrada" />
+              <p>Ops! Nenhuma tarefa aqui!</p>
+          </div>
         )}
       </div>
       {!activeFormPopUp && (
