@@ -4,6 +4,8 @@
     margin: 0 auto;
 }
 
+
+
 .addTask{
     border-radius: 50%;
     width: 50px;
@@ -26,8 +28,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
 }
 
 .boxNotasks img{
@@ -48,10 +52,17 @@
         bottom: 100px;
         right: 100px;
     }
+
 }
 
-@media (max-height:568px) {
-    .boxNotasks{
-        margin-top: 10px;
+@media (max-height:768px) {
+    .boxNotasks img{
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .boxNotasks p{
+        font-size: 1em;
     }
 }

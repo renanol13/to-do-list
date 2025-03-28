@@ -45,28 +45,27 @@ const Home = () => {
       {activeFormPopUp && <FormPopUp onclose={handleActiveFormPopUp} />}
       <Head textSearch={textSearch} setTextSearch={setTextSearch} />
 
-      <div>
-        <FilterTask opFilter={opFilter} setOpFilter={setOpFilter} />
+      <FilterTask opFilter={opFilter} setOpFilter={setOpFilter} />
 
-        {filteredTasks.length > 0 ? (
-          filteredTasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              id={task.id}
-              hours={task.timeTask}
-              date={task.dateTask}
-              category={task.category}
-              textTask={task.textTask}
-              isComplete={task.isComplete}
-            />
-          ))
-        ) : (
-          <div className={styles.boxNotasks}>
-            <img src={noTasksPng} alt="Nenhuma tarefa encontrada" />
-            <p>Ops! Nenhuma tarefa aqui!</p>
-          </div>
-        )}
-      </div>
+      {filteredTasks.length > 0 ? (
+        filteredTasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            id={task.id}
+            hours={task.timeTask}
+            date={task.dateTask}
+            category={task.category}
+            textTask={task.textTask}
+            isComplete={task.isComplete}
+            opFilter={opFilter}
+          />
+        ))
+      ) : (
+        <div className={styles.boxNotasks}>
+          <img src={noTasksPng} alt="Nenhuma tarefa encontrada" />
+          <p>Ops! Nenhuma tarefa aqui!</p>
+        </div>
+      )}
       {!activeFormPopUp && (
         <button
           className={styles.addTask}

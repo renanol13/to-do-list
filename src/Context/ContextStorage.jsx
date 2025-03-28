@@ -11,7 +11,7 @@ const Reduce = (state, action) => {
     case "ADD-TASK":
       const newPayload = action.payload;
 
-      const createId = crypto.randomUUID();
+      const createId = Date.now() + "_" + Math.round(Math.random() * 1000000);
       newPayload.id = createId;
       newPayload.isComplete = false;
 
@@ -21,7 +21,9 @@ const Reduce = (state, action) => {
       };
     case "COMPLETE-TASK":
       const newArray = state.tasks.map((task) =>
-        task.id === action.payload.id ? { ...task, isComplete: true } : task
+        task.id === action.payload.id
+          ? { ...task, isComplete: !task.isComplete }
+          : task
       );
 
       return {
@@ -29,7 +31,9 @@ const Reduce = (state, action) => {
         tasks: newArray,
       };
     case "DELETE-TASK":
-      const newTasks = state.tasks.filter((task) => task.id !== action.payload.id);
+      const newTasks = state.tasks.filter(
+        (task) => task.id !== action.payload.id
+      );
       return {
         ...state,
         tasks: newTasks,
