@@ -4,14 +4,14 @@ import styles from "./FormPopUp.module.css";
 import { IoSend } from "react-icons/io5";
 import { ContextStorage } from "../Context/ContextStorage";
 
-const FormPopUp = ({ onclose }) => {
+const FormPopUp = ({ onclose, dataEdition }) => {
   const [data, setData] = useState({
     dateTask: new Date().toISOString().split("T")[0],
     timeTask: new Date().toLocaleTimeString("pt-BR", {
       hour: "2-digit",
       minute: "2-digit",
     }),
-  });
+  } || dataEdition);
   const [error, setError] = useState(true);
   const { dispatch } = useContext(ContextStorage);
 

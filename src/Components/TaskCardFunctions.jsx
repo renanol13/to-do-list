@@ -6,7 +6,7 @@ import { useContext, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ContextStorage } from "../Context/ContextStorage";
 
-const TaskCardFunctions = ({ id }) => {
+const TaskCardFunctions = ({ id, onEdit }) => {
   const activeBoxFunctions = useRef(null);
   const { dispatch } = useContext(ContextStorage);
 
@@ -25,6 +25,7 @@ const TaskCardFunctions = ({ id }) => {
 
   const openTask = (e) => {
     e.stopPropagation();
+    onEdit()
   };
 
   return (

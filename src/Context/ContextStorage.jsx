@@ -39,6 +39,18 @@ const Reduce = (state, action) => {
         tasks: newTasks,
       };
 
+    case "UPDATE-DATA":
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === action.payload.id)
+          return { ...task, ...action.payload };
+        return task;
+      });
+
+      return {
+        ...state,
+        tasks: updatedTasks,
+      };
+
     default:
       return state;
   }

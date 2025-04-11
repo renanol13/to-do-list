@@ -35,7 +35,7 @@
     gap: 5px;
 }
 
-.boxMoreOptions input, .boxMoreOptions select, textarea{
+.boxMoreOptions input, .boxMoreOptions select, .boxFormPopUp textarea{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.279);
 }
 

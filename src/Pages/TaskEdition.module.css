@@ -1,0 +1,105 @@
+.boxTaskEdition{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    z-index: 111;
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxTaskEdition form{
+    width: 100%;
+    max-width: 500px;
+    
+}
+
+.boxTaskEdition textarea {
+    display: block;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    outline: none;
+    resize: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.boxTaskEdition input, .boxTaskEdition select{
+    border: 2px solid var(--color2);
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--color4);
+    background-color: var(--color2);
+    margin-bottom: 10px;
+
+}
+
+.boxEditingOptions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-bottom: 1px solid var(--color2);
+    height: 50px;
+    
+}
+
+.boxEditingOptions:nth-of-type(3) svg{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+
+
+.boxEditingOptions p{
+    font-weight: 500;
+}
+
+.boxEditingOptions svg{
+    font-size: 1.2em;
+    color: var(--color4);
+}
+
+.boxEditingOptions .taskComplete {
+    color: green;
+}
+
+.boxEditingOptions .taskIncomplete{
+    color: red;
+    animation-name: taskIncomplete;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.boxTaskEdition form button{
+    border: 2px solid var(--color2);
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--color4);
+    background-color: var(--color2);
+    margin-top: 5px;
+    font-size: 1em;
+}
+
+.boxTaskEdition form button:active{
+    color: var(--color1);
+}
+
+@keyframes taskIncomplete {
+    0%{
+        opacity: .4;
+    }
+
+    50%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: .4;
+    }
+}

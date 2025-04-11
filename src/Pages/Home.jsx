@@ -7,15 +7,23 @@ import FormPopUp from "../Components/FormPopUp";
 import TaskCard from "../Components/TaskCard";
 import FilterTask from "../Components/FilterTask";
 import noTasksPng from "../assets/img/noTask.png";
+import TaskEdition from "./TaskEdition";
 
 const Home = () => {
   const { state } = useContext(ContextStorage);
   const [opFilter, setOpFilter] = useState("pending");
   const [textSearch, setTextSearch] = useState("");
   const [activeFormPopUp, setActiveFormPopUp] = useState(false);
+  const [activeFormEdit, setActiveFormEdit] = useState(false);
+  const [objetctTask, setObjectTask] = useState(null);
 
   const handleActiveFormPopUp = () => {
     setActiveFormPopUp(!activeFormPopUp);
+  };
+
+  const handlectiveFormEdit = (task) => {
+    setActiveFormEdit(!activeFormEdit);
+    setObjectTask(task);
   };
 
   useLayoutEffect(() => {
@@ -43,8 +51,14 @@ const Home = () => {
   return (
     <div className={styles.boxHome}>
       {activeFormPopUp && <FormPopUp onclose={handleActiveFormPopUp} />}
-      <Head textSearch={textSearch} setTextSearch={setTextSearch} />
+      {activeFormEdit && (
+        <TaskEdition
+          task={objetctTask}
+          onClose={() => setActiveFormEdit(false)}
+        />
+      )}
 
+      <Head textSearch={textSearch} setTextSearch={setTextSearch} />
       <FilterTask opFilter={opFilter} setOpFilter={setOpFilter} />
 
       {filteredTasks.length > 0 ? (
@@ -58,6 +72,7 @@ const Home = () => {
             textTask={task.textTask}
             isComplete={task.isComplete}
             opFilter={opFilter}
+            onEdit={() => handlectiveFormEdit(task)}
           />
         ))
       ) : (

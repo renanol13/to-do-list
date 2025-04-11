@@ -1,13 +1,7 @@
 import styles from "./TaskCard.module.css";
 import { gsap } from "gsap";
 import { FaCheck } from "react-icons/fa";
-import {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TaskCardFunctions from "./TaskCardFunctions";
 import { ContextStorage } from "../Context/ContextStorage";
 
@@ -19,6 +13,7 @@ const TaskCard = ({
   category,
   isComplete,
   opFilter,
+  onEdit,
 }) => {
   const boxTaskRef = useRef(null);
   const boxIconCompleteTaskRef = useRef(null);
@@ -40,7 +35,6 @@ const TaskCard = ({
 
     // Se não estiver completa, animar para o estado de completa
     if (!isComplete) {
-      
       EffectComplete();
       // O efeito de rolagem só irá aparecer se estiver na aba de tarefas pendentes
       if (opFilter == "pending") {
@@ -80,16 +74,14 @@ const TaskCard = ({
       onClick={() => setActiveFunctionsCard(!activeFunctionsCard)}
     >
       {activeFunctionsCard ? (
-        <TaskCardFunctions id={id} />
+        <TaskCardFunctions id={id} onEdit={onEdit} />
       ) : (
         <>
           <div
             onClick={(e) => handleClick(e)}
             className={styles.boxIconCompleteTask}
           >
-            <FaCheck
-              ref={boxIconCompleteTaskRef}
-            />
+            <FaCheck ref={boxIconCompleteTaskRef} />
           </div>
           <div className={styles.boxInfo}>
             <h4 className={styles.content}>{textTask}</h4>
