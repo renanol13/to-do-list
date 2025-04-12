@@ -6,7 +6,7 @@ import { useContext, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ContextStorage } from "../Context/ContextStorage";
 
-const TaskCardFunctions = ({ id, onEdit }) => {
+const TaskCardFunctions = ({ id, textTask, onEdit }) => {
   const activeBoxFunctions = useRef(null);
   const { dispatch } = useContext(ContextStorage);
 
@@ -25,12 +25,40 @@ const TaskCardFunctions = ({ id, onEdit }) => {
 
   const openTask = (e) => {
     e.stopPropagation();
-    onEdit()
+    onEdit();
+  };
+
+  const shareTask = (e) => {
+    e.stopPropagation();
+    if (!navigator.share) {
+      if (!navigator.clipboard) {
+        alert("Essa função não está disponivel em seu dispositivo!");
+        return;
+      }
+
+      navigator.clipboard
+        .writeText(textTask)
+        .then(() =>
+          alert(
+            "A função de compartilhar não é suportada nesse dispositivo!\nO texto foi copiado para a área de transferência."
+          )
+        )
+        .catch(() => alert("Erro ao copiar texto para de tranferência."));
+      return;
+    }
+
+    navigator
+      .share({
+        title: "Compatilhar tarefa",
+        text: textTask,
+      })
+      .then(() => console.log("Compartilhado com sucesso"))
+      .catch((err) => console.error("Erro ao compartilhar: ", err));
   };
 
   return (
     <div className={styles.boxTaskCardFunctions} ref={activeBoxFunctions}>
-      <button className={styles.share}>
+      <button className={styles.share} onClick={(e) => shareTask(e)}>
         <FaShareAlt />
       </button>
       <button className={styles.open} onClick={(e) => openTask(e)}>
