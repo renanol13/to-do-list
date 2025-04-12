@@ -67,6 +67,12 @@ const TaskCard = ({
     }
   }, []);
 
+  const formatDate = () => {
+    return new Date(date + "T00:00:00")
+    .toLocaleDateString("pt-BR")
+    .replace(/\//g, "-")
+  }
+
   return (
     <div
       ref={boxTaskRef}
@@ -98,7 +104,9 @@ const TaskCard = ({
           <div className={styles.boxInfo}>
             <h4 className={styles.content}>{textTask}</h4>
             <div className={styles.boxTimes}>
-              <p id="date">{date}</p>
+              <p id="date">
+                {formatDate()}
+              </p>
               <p id="hours">{hours}</p>
             </div>
           </div>

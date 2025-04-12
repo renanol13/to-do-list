@@ -33,7 +33,9 @@ const TaskCardFunctions = ({ onEdit, infoTask }) => {
   const shareTask = (e) => {
     const configTask = `
   📌 Tarefa: ${infoTask.textTask}
-  📅 Data: ${infoTask.date}
+  📅 Data: ${new Date(infoTask.date + "T00:00:00")
+    .toLocaleDateString("pt-BR")
+    .replace(/\//g, "-")}
   ⏰ Hora: ${infoTask.hours}
   🏷️ Categoria: ${infoTask.category}
   ✅ Status: ${infoTask.isComplete ? "Finalizada ✅" : "Ainda pendente ⏳"}

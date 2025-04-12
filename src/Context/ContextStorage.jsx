@@ -17,7 +17,7 @@ const Reduce = (state, action) => {
 
       return {
         ...state,
-        tasks: [...state.tasks, newPayload],
+        tasks: [newPayload, ...state.tasks],
       };
     case "COMPLETE-TASK":
       const newArray = state.tasks.map((task) =>
