@@ -6,7 +6,9 @@ import { useContext, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ContextStorage } from "../Context/ContextStorage";
 
-const TaskCardFunctions = ({ id, textTask, onEdit }) => {
+const TaskCardFunctions = ({ onEdit, infoTask }) => {
+  console.log(infoTask.id);
+
   const activeBoxFunctions = useRef(null);
   const { dispatch } = useContext(ContextStorage);
 
@@ -20,7 +22,7 @@ const TaskCardFunctions = ({ id, textTask, onEdit }) => {
 
   const deleteTask = (e) => {
     e.stopPropagation();
-    dispatch({ type: "DELETE-TASK", payload: { id: id } });
+    dispatch({ type: "DELETE-TASK", payload: { id: infoTask.id } });
   };
 
   const openTask = (e) => {
@@ -29,6 +31,15 @@ const TaskCardFunctions = ({ id, textTask, onEdit }) => {
   };
 
   const shareTask = (e) => {
+    const configTask = `
+  📌 Tarefa: ${infoTask.textTask}
+  📅 Data: ${infoTask.date}
+  ⏰ Hora: ${infoTask.hours}
+  🏷️ Categoria: ${infoTask.category}
+  ✅ Status: ${infoTask.isComplete ? "Finalizada ✅" : "Ainda pendente ⏳"}
+      
+  #MinhaAgenda #TaskShare
+    `;
     e.stopPropagation();
     if (!navigator.share) {
       if (!navigator.clipboard) {
@@ -36,8 +47,9 @@ const TaskCardFunctions = ({ id, textTask, onEdit }) => {
         return;
       }
 
+      // Caso a função de compartilhar não esteja disponivel
       navigator.clipboard
-        .writeText(textTask)
+        .writeText(configTask)
         .then(() =>
           alert(
             "A função de compartilhar não é suportada nesse dispositivo!\nO texto foi copiado para a área de transferência."
@@ -50,7 +62,7 @@ const TaskCardFunctions = ({ id, textTask, onEdit }) => {
     navigator
       .share({
         title: "Compatilhar tarefa",
-        text: textTask,
+        text: configTask,
       })
       .then(() => console.log("Compartilhado com sucesso"))
       .catch((err) => console.error("Erro ao compartilhar: ", err));

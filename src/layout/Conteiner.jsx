@@ -1,7 +1,6 @@
 import styles from "./Conteiner.module.css";
 
-const Conteiner = ({ children, popUps = false }) => {
-    console.log(popUps);
+const Conteiner = ({ children}) => {
     
   return (
     <div className={styles.boxConteiner}>

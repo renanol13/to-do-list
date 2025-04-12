@@ -74,7 +74,19 @@ const TaskCard = ({
       onClick={() => setActiveFunctionsCard(!activeFunctionsCard)}
     >
       {activeFunctionsCard ? (
-        <TaskCardFunctions id={id} textTask={textTask} onEdit={onEdit} />
+        <TaskCardFunctions
+          id={id}
+          textTask={textTask}
+          onEdit={onEdit}
+          infoTask={{
+            id,
+            textTask,
+            hours,
+            date,
+            category,
+            isComplete,
+          }}
+        />
       ) : (
         <>
           <div
