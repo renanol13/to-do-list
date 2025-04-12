@@ -7,7 +7,6 @@ import { gsap } from "gsap";
 import { ContextStorage } from "../Context/ContextStorage";
 
 const TaskCardFunctions = ({ onEdit, infoTask }) => {
-  console.log(infoTask.id);
 
   const activeBoxFunctions = useRef(null);
   const { dispatch } = useContext(ContextStorage);

@@ -63,15 +63,15 @@ const TaskCard = ({
   // Verifica se a tarefa está completa e seta o estado de verificação
   useEffect(() => {
     if (isComplete) {
-      EffectComplete();
+      if (!activeFunctionsCard) EffectComplete();
     }
-  }, []);
+  }, [activeFunctionsCard]);
 
   const formatDate = () => {
     return new Date(date + "T00:00:00")
-    .toLocaleDateString("pt-BR")
-    .replace(/\//g, "-")
-  }
+      .toLocaleDateString("pt-BR")
+      .replace(/\//g, "-");
+  };
 
   return (
     <div
@@ -104,9 +104,7 @@ const TaskCard = ({
           <div className={styles.boxInfo}>
             <h4 className={styles.content}>{textTask}</h4>
             <div className={styles.boxTimes}>
-              <p id="date">
-                {formatDate()}
-              </p>
+              <p id="date">{formatDate()}</p>
               <p id="hours">{hours}</p>
             </div>
           </div>
