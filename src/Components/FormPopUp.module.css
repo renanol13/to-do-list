@@ -9,7 +9,7 @@
 
 .boxForm {
     width: 100%;
-    background-color: #fff;
+    background-color: var(--color3);
     border-radius: 20px 20px 0px 0px;
     position: absolute;
     bottom: 0px;
@@ -27,6 +27,10 @@
     resize: none;
 }
 
+.boxFormPopUp textarea::placeholder{
+    color: var(--colorText);
+}
+
 .boxMoreOptions{
     display: flex;
     justify-content:space-around;
@@ -37,6 +41,7 @@
 
 .boxMoreOptions input, .boxMoreOptions select, .boxFormPopUp textarea{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.279);
+    background-color: var(--color1);
 }
 
 .boxMoreOptions button{
@@ -44,7 +49,7 @@
     display: flex;
     border-radius: 50%;
     border: none;
-    background-color: var(--color3);
+    background-color: var(--color1);
     font-size: 1em;
     cursor: pointer;
 }
@@ -58,11 +63,11 @@
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
-    color: var(--color4);
+    color: var(--colorText);
 }
 
 .boxForm svg{
-    color: var(--color4);
+    color: var(--colorText);
 }
 
 .error{

@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import Conteiner from "./layout/Conteiner";
 import Home from "./Pages/Home";
 
 const App = () => {
   return (
-    <Conteiner>
-      <Home />
-    </Conteiner>
+    <>
+      <Conteiner>
+        <Home />
+      </Conteiner>
+    </>
   );
 };
 

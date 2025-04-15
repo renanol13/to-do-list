@@ -1,7 +1,7 @@
 import styles from "./Head.module.css";
 import { FiSearch } from "react-icons/fi";
-import { FaGear } from "react-icons/fa6";
 import { useState } from "react";
+import HeadOptionsFunctions from "../Project/HeadOptionsFunctions";
 
 const Header = ({ textSearch, setTextSearch }) => {
   const [activeGear, setActiveGear] = useState(false);
@@ -18,9 +18,7 @@ const Header = ({ textSearch, setTextSearch }) => {
           onChange={(e) => setTextSearch(e.target.value)}
         />
       </div>
-      <button onClick={() => setActiveGear(!activeGear)}>
-        <FaGear className={`${activeGear && styles["activeGear"]}`} />
-      </button>
+      <HeadOptionsFunctions/>
     </div>
   );
 };

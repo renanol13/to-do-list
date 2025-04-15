@@ -1,0 +1,41 @@
+.headOptionsFunctions >  button{
+    border: none;
+    width: 50px;
+    background-color: transparent;
+    font-size: 1.4em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--colorText);
+    position: relative;
+}
+
+.headOptionsFunctions button > svg{
+    transition: .5s;
+}
+
+.activeGear{
+    transform: rotate(90deg);
+}
+
+.headOptionsFunctions ul{
+    position: absolute;
+    margin-top: 10px;
+}
+
+.headOptionsFunctions ul li{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.headOptionsFunctions ul li svg{
+    font-weight: bold;
+}
+
+.butThemaLight{
+    color: rgb(238, 255, 0);
+}

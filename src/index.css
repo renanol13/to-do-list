@@ -9,6 +9,16 @@
   --color2: #aaaaaa;
   --color3: #a7c7e7;
   --color4: #4c6b8c;
+  --colorText: #000
+}
+
+.darkThema{
+  --color1: rgb(103, 102, 102);
+  --color2: #888888; 
+  --color3: #227cb0;
+  --color4: #3c546e;
+  --colorText: #ffff
+
 }
 
 body,
@@ -16,11 +26,9 @@ html {
   height: 100%;
   background: linear-gradient(
     135deg,
-    #f5f5f5,
-    #aaaaaa,
-    #a7c7e7,
-    #4c6b8c,
-    #345270
+    var(--color1),
+    var(--color2),
+    var(--color4)
   );
   background-attachment: fixed;
   font-family: "Open Sans";
